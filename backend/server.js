@@ -42,6 +42,15 @@ const userInfoSchema = new mongoose.Schema({
 
 const UserInfo = mongoose.model("UserInfo", userInfoSchema);
 
+//Testing
+app.get("/hi", async (req, res) => {
+  try {
+    console.log("HIIIIII");
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
 // Login Route
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
