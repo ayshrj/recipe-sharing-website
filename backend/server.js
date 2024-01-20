@@ -42,15 +42,6 @@ const userInfoSchema = new mongoose.Schema({
 
 const UserInfo = mongoose.model("UserInfo", userInfoSchema);
 
-//Testing
-app.get("/hi", async (req, res) => {
-  try {
-    console.log("HIIIIII");
-  } catch (error) {
-    res.status(500).json({ success: false, message: "Internal server error" });
-  }
-});
-
 // Login Route
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
@@ -58,17 +49,28 @@ app.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ username });
 
-    if (user && bcrypt.compareSync(password, user.password)) {
+    if (!user) {
+      res.json({
+        success: false,
+        userFound: false,
+        message: "Invalid credentials",
+      });
+    } else if (bcrypt.compareSync(password, user.password)) {
       // Fetch user info using the userid
       const userInfo = await UserInfo.findOne({ userid: user.userid });
       res.json({
         success: true,
+        userFound: true,
         message: "Login successful",
-        name: userInfo.name, // Include the name in the response
+        name: userInfo.name,
         userid: userInfo.userid,
       });
     } else {
-      res.json({ success: false, message: "Invalid credentials" });
+      res.json({
+        success: false,
+        userFound: true,
+        message: "Invalid credentials",
+      });
     }
   } catch (error) {
     res.status(500).json({ success: false, message: "Internal server error" });

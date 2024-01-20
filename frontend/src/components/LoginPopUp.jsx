@@ -34,14 +34,14 @@ const LoginPopUp = ({
 
       if (response.data.success) {
         console.log("Login successful. Welcome, " + response.data.name);
-        // setName(response.data.name);
-        // setUserRecipes([]);
         setIsOpen(false);
         setName(response.data.name);
         setLoggedInUserId(response.data.userid);
         setIsUserLoggedIn(true);
+      } else if (response.data.userFound) {
+        console.log("Wrong Password");
       } else {
-        console.log("Login failed. Check your credentials.");
+        console.log("No Such User Exists");
       }
     } catch (error) {
       console.error("Error during login:", error);
