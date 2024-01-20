@@ -15,6 +15,6 @@
     "rewrites": [
       { 
       "source": "/(.*)", 
-      "destination": "/" }
+      "destination": "/server.js" }
     ]
   }
