@@ -110,6 +110,7 @@ const Login = () => {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          autoComplete="off"
         />
       </label>
       <br />
@@ -119,6 +120,7 @@ const Login = () => {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          autoComplete="off"
         />
       </label>
       <br />
@@ -129,6 +131,7 @@ const Login = () => {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            autoComplete="off"
           />
         </label>
       )}
@@ -149,6 +152,7 @@ const Login = () => {
                 type="text"
                 value={newRecipeId}
                 onChange={(e) => setNewRecipeId(e.target.value)}
+                autoComplete="off"
               />
             </label>
             <br />
@@ -158,6 +162,7 @@ const Login = () => {
                 type="text"
                 value={newRecipeName}
                 onChange={(e) => setNewRecipeName(e.target.value)}
+                autoComplete="off"
               />
             </label>
             <br />

@@ -55,7 +55,7 @@ function RecipeFormPage() {
     const data = {
       recipeName: recipeName,
       ingredients: ingredientInputs,
-      steps: steps,
+      steps: steps.filter((value) => value !== ""),
     };
     console.log(data);
   };
@@ -72,6 +72,7 @@ function RecipeFormPage() {
           id="recipeName"
           onChange={(e) => setRecipeName(e.target.value)}
           placeholder="Recipe Name"
+          autoComplete="off"
         />
 
         <label htmlFor="ingredients">Ingredients:</label>
@@ -82,6 +83,7 @@ function RecipeFormPage() {
             value={currentIngredient}
             onChange={(e) => setCurrentIngredient(e.target.value)}
             placeholder="Ingredient"
+            autoComplete="off"
           />
           <input
             type="text"
@@ -89,13 +91,14 @@ function RecipeFormPage() {
             value={currentIngredientQuantity}
             onChange={(e) => setCurrentIngredientQuantity(e.target.value)}
             placeholder="Quantity"
+            autoComplete="off"
           />
           <button
             className="add-ingredient-button"
             type="button"
             onClick={handleAddIngredient}
           >
-            <FontAwesomeIcon style={{ color: "grey" }} icon={faPlus} />
+            <FontAwesomeIcon icon={faPlus} />
           </button>
         </div>
 
@@ -125,6 +128,7 @@ function RecipeFormPage() {
               type="text"
               value={step}
               onChange={(e) => handleStepChange(index, e.target.value)}
+              autoComplete="off"
             />
             <button
               className="add-step-button"

@@ -3,12 +3,15 @@
     border: 1px solid #ccc;
     padding: 16px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
     transition: box-shadow 0.3s ease;
   }
   
   .recipe-tile:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+    border: dotted;
+    background-color: rgb(255, 247, 247);
+    border-width: 2px;
   }
   
   .recipe-tile h2 {

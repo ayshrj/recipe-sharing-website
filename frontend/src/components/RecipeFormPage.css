@@ -126,6 +126,7 @@
   }
 
   .recipeName{
+    padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
@@ -149,24 +150,38 @@
     background-color: bisque;
   }
 
-  @media (max-width: 440px) {
+  @media (max-width: 700px) {
+    .currentIngredient{
+      width: 70%
+    }
     .currentIngredientQuantity{
-      width: 93%
+      width: 20%
+    }
+  }
+  @media (max-width: 440px) {
+    .currentIngredient{
+      width: 100%
+    }
+    .currentIngredientQuantity{
+      width: 91%
     }
   }
 
-  @media (max-width: 410px) {
+  @media (max-width: 414px) {
     .currentIngredientQuantity{
-      width: 92%
+      width: 90.59%
     }
   }
-  @media (max-width: 364px) {
+  @media (max-width: 397px) {
     .currentIngredientQuantity{
       width: 90%
     }
   }
 
-  @media (max-width: 320px) {
+  @media (max-width: 376px) {
+    .add-ingredient-button{
+      width: 100%;
+    }
     .currentIngredientQuantity{
       width: 100%
     }

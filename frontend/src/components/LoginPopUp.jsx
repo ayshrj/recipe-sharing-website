@@ -147,6 +147,7 @@ const LoginPopUp = ({
                     }
                   }}
                   placeholder="Enter your username"
+                  autoComplete="off"
                 />
 
                 <label style={{ color: "black" }} htmlFor="password">
@@ -166,6 +167,7 @@ const LoginPopUp = ({
                     }
                   }}
                   placeholder="Enter your password"
+                  autoComplete="off"
                 />
                 {submitButtonClicked && !userNameFound && (
                   <DialogueBox
@@ -211,6 +213,7 @@ const LoginPopUp = ({
                     }
                   }}
                   placeholder="Enter your username"
+                  autoComplete="off"
                 />
 
                 <label style={{ color: "black" }} htmlFor="password">
@@ -230,6 +233,7 @@ const LoginPopUp = ({
                     }
                   }}
                   placeholder="Enter your Password"
+                  autoComplete="off"
                 />
 
                 <label style={{ color: "black" }} htmlFor="username">
@@ -241,6 +245,7 @@ const LoginPopUp = ({
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Enter your Name"
+                  autoComplete="off"
                 />
 
                 {submitButtonClicked && userNameFound && (
