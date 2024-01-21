@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import "./Scroll.css";
-import Navbar from "./components/NavBar";
+import NavBar from "./components/NavBar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/HomePage";
 import Page1 from "./components/Page1";
@@ -19,7 +19,7 @@ function App() {
   return (
     <Router>
       <div className={`app ${isHomePage ? "home" : ""}`}>
-        <Navbar
+        <NavBar
           isUserLoggedIn={isUserLoggedIn}
           setIsUserLoggedIn={setIsUserLoggedIn}
           loggedInUserId={loggedInUserId}
