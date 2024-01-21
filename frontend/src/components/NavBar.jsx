@@ -59,11 +59,11 @@ const NavBar = ({
           <FontAwesomeIcon icon={faPenToSquare} />
         </Link>
         <Link to="/page3" className="NavBarButton">
-          <FontAwesomeIcon icon={faRobot} />
-        </Link>
-        <Link to="/page4" className="NavBarButton">
           <FontAwesomeIcon icon={faStar} />
         </Link>
+        {/* <Link to="/page4" className="NavBarButton">
+          <FontAwesomeIcon icon={faRobot} />
+        </Link> */}
         <LoginPopUp
           isUserLoggedIn={isUserLoggedIn}
           setIsUserLoggedIn={setIsUserLoggedIn}
