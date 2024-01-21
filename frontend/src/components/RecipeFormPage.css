@@ -159,6 +159,9 @@
     }
   }
   @media (max-width: 440px) {
+    .recipeName{
+      margin-left: 3px;
+    }
     .currentIngredient{
       width: 100%
     }

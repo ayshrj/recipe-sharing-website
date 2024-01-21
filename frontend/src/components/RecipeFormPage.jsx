@@ -74,7 +74,6 @@ function RecipeFormPage() {
           placeholder="Recipe Name"
           autoComplete="off"
         />
-
         <label htmlFor="ingredients">Ingredients:</label>
         <div className="ingredient-container">
           <input
