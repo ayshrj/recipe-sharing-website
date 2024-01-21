@@ -1,4 +1,3 @@
-  /*NavBar.css*/
   body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -29,8 +28,8 @@
   .logo-container {
     font-size: 1.5rem;
     font-weight: bold;
-    max-width: 700px; /* Set max width */
-    margin: 0 auto;  /* Center the container */
+    max-width: 700px;
+    margin: 0 auto; 
   }
   
   .NavBarButtons {
@@ -57,7 +56,6 @@
   }
 
   .scrolled {
-    /* background-color: #333; */
     background-color: #897474;
   }
   
