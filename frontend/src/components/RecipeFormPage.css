@@ -163,10 +163,13 @@
       width: 100%
     }
     .currentIngredientQuantity{
-      width: 91%
+      width: 100%
+    }
+    .add-ingredient-button{
+      width: 100%;
     }
   }
-
+/*
   @media (max-width: 414px) {
     .currentIngredientQuantity{
       width: 90.59%
@@ -185,4 +188,4 @@
     .currentIngredientQuantity{
       width: 100%
     }
-  }
+  } */
