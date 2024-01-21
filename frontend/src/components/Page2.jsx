@@ -1,10 +1,11 @@
 import React from "react";
-
-const Page2 = () => {
+import RecipeFormPage from "./RecipeFormPage";
+const Page2 = ({ setIsHomePage }) => {
+  setIsHomePage(false);
   return (
     <div>
       <h1>Page 2</h1>
-      <p>This is the content of Page 1.</p>
+      <RecipeFormPage />
     </div>
   );
 };

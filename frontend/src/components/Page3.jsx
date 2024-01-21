@@ -1,6 +1,7 @@
 import React from "react";
 
-const Page3 = () => {
+const Page3 = ({ setIsHomePage }) => {
+  setIsHomePage(false);
   return (
     <div>
       <h1>Page 3</h1>

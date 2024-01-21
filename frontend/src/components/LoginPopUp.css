@@ -1,54 +1,48 @@
-/* LoginPopUp.css */
 .popup-container {
-  position: relative;
-  display: inline-block;
-}
-
-.login-button {
-  padding: 8px 16px;
-  background-color: #3498db;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.popup {
-  position: absolute;
-  top: calc(100% + 30px);
-  left: 50%;
-  transform: translateX(-120%);
-  background-color: #fff;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  z-index: 1;
-  width: 150px;
-}
-
-.popup label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-}
-
-.popup input {
-  width: calc(100% - 16px);
-  padding: 8px;
-  margin-bottom: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.popup button {
-  padding: 8px 16px;
-  background-color: #3498db;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.error-message {
-  color: #ff0000;
-  margin-top: 8px;
-  font-size: 12px;
-}
+    position: relative;
+    display: inline-block;
+  }
+  
+  .login-button {
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .popup {
+    position: absolute;
+    top: calc(100% + 30px);
+    left: 50%;
+    transform: translateX(-120%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 1;
+    width: 150px;
+  }
+  
+  .popup label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .popup input {
+    width: calc(100% - 16px);
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .popup button {
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  

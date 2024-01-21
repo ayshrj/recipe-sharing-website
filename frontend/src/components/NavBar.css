@@ -1,3 +1,4 @@
+  /*NavBar.css*/
   body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -11,30 +12,39 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
+    background-color: transparent;
     color: white;
     padding: 10px 20px;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
+    transition: all 0.5s ease;
+  }
+
+  .banner-wrapper {
+    position: relative;
   }
   
-  .logo {
+  .logo-container {
     font-size: 1.5rem;
     font-weight: bold;
+    max-width: 700px; /* Set max width */
+    margin: 0 auto;  /* Center the container */
   }
   
   .NavBarButtons {
     display: flex;
-    gap: 10px;
+    gap: 5px;
+    max-width: 700px; /* Set max width */
+    margin: 0 auto;  
   }
   
   .NavBarButton {
     text-decoration: none;
     background-color: transparent;
     border: none;
-    color: white;
+    color: rgb(154, 154, 154);
     cursor: pointer;
     font-size: 1rem;
     padding: 8px 12px;
@@ -45,4 +55,12 @@
   .NavBarButton:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
+
+  .scrolled {
+    /* background-color: #333; */
+    background-color: #897474;
+  }
   
+  .logo{
+    transition: all 1s ease;
+  }

@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
-//// MongoDB recipeIdSchema Schema
+// MongoDB recipeIdSchema Schema
 const recipeIdSchema = new mongoose.Schema({
   recipeid: Number,
   recipeName: String,
@@ -56,7 +56,7 @@ app.post("/login", async (req, res) => {
         message: "Invalid credentials",
       });
     } else if (bcrypt.compareSync(password, user.password)) {
-      // Fetch user info using the userid
+      // Fetching user's info using the userid
       const userInfo = await UserInfo.findOne({ userid: user.userid });
       res.json({
         success: true,
@@ -82,17 +82,17 @@ app.post("/register", async (req, res) => {
   const { username, password, name } = req.body;
 
   try {
-    // Check if the username already exists
+    // Checking if the username already exists
     const existingUser = await User.findOne({ username });
 
     if (existingUser) {
       return res.json({ success: false, message: "Username already exists" });
     }
 
-    // Hash the password
+    // Hashing the password
     const hashedPassword = bcrypt.hashSync(password, 10);
 
-    // Create a new user
+    // Creating a new user
     const newUser = new User({
       username,
       password: hashedPassword,
@@ -101,7 +101,7 @@ app.post("/register", async (req, res) => {
 
     await newUser.save();
 
-    //Add userIdInfo
+    //Adding userIdInfo
     const newUserId = new UserInfo({
       userid: totalUser,
       name: name,
@@ -117,7 +117,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-// Retrieve user recipes route
+// Retrieving user recipes route
 app.get("/user/recipes", async (req, res) => {
   const { userid } = req.query;
 
@@ -133,7 +133,7 @@ app.get("/user/recipes", async (req, res) => {
   }
 });
 
-// Update user recipes route
+// Updating user recipes route
 app.post("/user/add-recipe", async (req, res) => {
   const { userid, recipeid, recipeName } = req.body;
 
@@ -141,7 +141,7 @@ app.post("/user/add-recipe", async (req, res) => {
     console.log(userid, recipeid, recipeName);
     const userInfo = await UserInfo.findOne({ userid });
     if (userInfo) {
-      // Check if the recipeid already exists in myRecipe array
+      // Checking if the recipeid already exists in myRecipe array
       const existingRecipe = userInfo.myRecipe.find(
         (recipe) => recipe.recipeid == recipeid
       );
@@ -149,7 +149,7 @@ app.post("/user/add-recipe", async (req, res) => {
       if (existingRecipe) {
         res.json({ success: false, message: "Recipe already exists" });
       } else {
-        // Add the new recipe to the myRecipe array
+        // Adding the new recipe to the myRecipe array
         userInfo.myRecipe.push({ recipeid, recipeName });
         await userInfo.save();
         res.json({ success: true, message: "Recipe added successfully" });
@@ -162,7 +162,6 @@ app.post("/user/add-recipe", async (req, res) => {
   }
 });
 
-// Start server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

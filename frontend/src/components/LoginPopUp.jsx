@@ -2,9 +2,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import "./LoginPopUp.css";
+import DialogueBox from "./DialogueBox";
 
 const LoginPopUp = ({
   isUserLoggedIn,
@@ -17,8 +19,18 @@ const LoginPopUp = ({
   const [name, setName] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [loginWindow, setLoginWindow] = useState(true);
+  const [userNameFound, setUserNameFound] = useState(false);
+  const [correctPassword, setCorrectPassword] = useState(false);
+  const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
   const togglePopup = () => {
-    setIsOpen(!isOpen);
+    if (isOpen === true) {
+      setUserNameFound(false);
+      setCorrectPassword(false);
+      setSubmitButtonClicked(false);
+      setIsOpen(false);
+    } else {
+      setIsOpen(true);
+    }
   };
 
   const handleNewUserClick = () => {
@@ -32,15 +44,21 @@ const LoginPopUp = ({
         password,
       });
 
+      setSubmitButtonClicked(true);
+
       if (response.data.success) {
         console.log("Login successful. Welcome, " + response.data.name);
+        setUserNameFound(true);
+        setCorrectPassword(true);
         setIsOpen(false);
         setName(response.data.name);
         setLoggedInUserId(response.data.userid);
         setIsUserLoggedIn(true);
       } else if (response.data.userFound) {
+        setUserNameFound(true);
         console.log("Wrong Password");
       } else {
+        setUserNameFound(false);
         console.log("No Such User Exists");
       }
     } catch (error) {
@@ -56,14 +74,18 @@ const LoginPopUp = ({
         name,
       });
 
+      setSubmitButtonClicked(true);
+
       console.log(name);
 
       if (response.data.success) {
+        setUserNameFound(false);
         setLoginWindow(true);
         console.log("Registration successful");
         setIsOpen(false);
         handleLogin();
       } else {
+        setUserNameFound(true);
         console.log("Registration failed. " + response.data.message);
       }
     } catch (error) {
@@ -88,7 +110,7 @@ const LoginPopUp = ({
         onClick={togglePopup}
       >
         {isUserLoggedIn ? (
-          <FontAwesomeIcon icon={faSignOutAlt} />
+          <FontAwesomeIcon icon={faUser} />
         ) : (
           <FontAwesomeIcon icon={faSignInAlt} />
         )}
@@ -103,7 +125,8 @@ const LoginPopUp = ({
                   {name}
                 </label>
                 <button className="logout-button" onClick={handleLogout}>
-                  Logout
+                  {"Logout      "}
+                  <FontAwesomeIcon icon={faSignOutAlt} />
                 </button>
               </div>
             ) : loginWindow ? (
@@ -115,7 +138,15 @@ const LoginPopUp = ({
                   type="text"
                   id="username"
                   value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => {
+                    const regex = /\s/;
+                    if (!regex.test(e.target.value)) {
+                      setUserNameFound(false);
+                      setCorrectPassword(false);
+                      setSubmitButtonClicked(false);
+                      setUsername(e.target.value);
+                    }
+                  }}
                   placeholder="Enter your username"
                 />
 
@@ -126,9 +157,30 @@ const LoginPopUp = ({
                   type="password"
                   id="password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {
+                    const regex = /\s/;
+                    if (!regex.test(e.target.value)) {
+                      setUserNameFound(false);
+                      setCorrectPassword(false);
+                      setSubmitButtonClicked(false);
+                      setPassword(e.target.value);
+                    }
+                  }}
                   placeholder="Enter your password"
                 />
+                {submitButtonClicked && !userNameFound && (
+                  <DialogueBox
+                    message={"User Not Found"}
+                    topDistance={"5.8rem"}
+                  />
+                )}
+
+                {submitButtonClicked && userNameFound && !correctPassword && (
+                  <DialogueBox
+                    message={"Wrong Password"}
+                    topDistance={"10.6rem"}
+                  />
+                )}
 
                 <button className="login-button" onClick={handleLogin}>
                   Login
@@ -150,7 +202,15 @@ const LoginPopUp = ({
                   type="text"
                   id="username"
                   value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => {
+                    const regex = /\s/;
+                    if (!regex.test(e.target.value)) {
+                      setUserNameFound(false);
+                      setCorrectPassword(false);
+                      setSubmitButtonClicked(false);
+                      setUsername(e.target.value);
+                    }
+                  }}
                   placeholder="Enter your username"
                 />
 
@@ -161,7 +221,15 @@ const LoginPopUp = ({
                   type="password"
                   id="password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {
+                    const regex = /\s/;
+                    if (!regex.test(e.target.value)) {
+                      setUserNameFound(false);
+                      setCorrectPassword(false);
+                      setSubmitButtonClicked(false);
+                      setPassword(e.target.value);
+                    }
+                  }}
                   placeholder="Enter your Password"
                 />
 
@@ -175,6 +243,13 @@ const LoginPopUp = ({
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Enter your Name"
                 />
+
+                {submitButtonClicked && userNameFound && (
+                  <DialogueBox
+                    message={"Username Already Exists!"}
+                    topDistance={"5.8rem"}
+                  />
+                )}
 
                 <button className="login-button" onClick={handleRegister}>
                   Register

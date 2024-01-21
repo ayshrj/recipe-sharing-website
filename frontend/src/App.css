@@ -1,4 +1,12 @@
+/* App.css */
+
 .app {
   text-align: center;
   padding-top: 70px;
 }
+
+.app.home{
+  padding-top: 0px;
+}
+
+
