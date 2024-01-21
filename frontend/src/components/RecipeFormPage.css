@@ -18,7 +18,7 @@
   
   label {
     font-size: 16px;
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
   }
   
   .step-input {
@@ -73,7 +73,6 @@
   }
 
   .ingredient-item{
-    
     border-radius: 4px;
     padding-left: 2px;
     padding-right: 2px;
@@ -81,12 +80,12 @@
     margin-left: 3px;
     margin-top: 4px;
   }
+
   .ingredient-item:hover{
     background-color: rgb(225, 225, 225);
     transition: all 0.2s ease;
   }
  
-
   .ingredient-shown-container{
     margin-left: 4px;
     font-size: 13px;
@@ -99,9 +98,74 @@
     align-items: left;
     justify-content: left;
   }
-  .currentIngredient{
-    width:280px;
+
+  .currentIngredient, .currentIngredientQuantity{
+    border: 1px solid #ccc;
+    border-radius: 4px;
   }
+
+  .currentIngredient {
+    width: 70%;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
   .currentIngredientQuantity{
-    width:80px
+    width: 20%;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+
+  @media (max-width: 700px) {
+    .currentIngredient{
+      width: 100%;
+      border-radius: 4px;
+    }
+    .currentIngredientQuantity{
+      width: 93%;
+      border-radius: 4px;
+    }
+  }
+
+  .recipeName{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .add-step-button, .remove-step-button{
+    border: none;
+    background-color: none;
+  }
+
+  .recipe-submit-button{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 100%;
+    padding: 3px;
+    background-color: bisque;
+  }
+
+  @media (max-width: 440px) {
+    .currentIngredientQuantity{
+      width: 93%
+    }
+  }
+
+  @media (max-width: 410px) {
+    .currentIngredientQuantity{
+      width: 92%
+    }
+  }
+  @media (max-width: 364px) {
+    .currentIngredientQuantity{
+      width: 90%
+    }
+  }
+
+  @media (max-width: 320px) {
+    .currentIngredientQuantity{
+      width: 100%
+    }
   }

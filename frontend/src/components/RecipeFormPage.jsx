@@ -69,6 +69,7 @@ function RecipeFormPage() {
         <input
           type="text"
           value={recipeName}
+          className="recipeName"
           id="recipeName"
           onChange={(e) => setRecipeName(e.target.value)}
           placeholder="Recipe Name"
@@ -135,19 +136,23 @@ function RecipeFormPage() {
             >
               <FontAwesomeIcon icon={faPlus} />
             </button>
-            {steps.length > 1 && (
-              <button
-                className="remove-step-button"
-                type="button"
-                onClick={() => handleRemoveStep(index)}
-              >
-                <FontAwesomeIcon icon={faMinus} />
-              </button>
-            )}
+
+            <button
+              className="remove-step-button"
+              type="button"
+              onClick={() => handleRemoveStep(index)}
+              disabled={`${steps.length > 1 ? "" : "true"}`}
+            >
+              <FontAwesomeIcon icon={faMinus} />
+            </button>
           </div>
         ))}
 
-        <p type="submit" onClick={showDataSent}>
+        <p
+          className="recipe-submit-button"
+          type="submit"
+          onClick={showDataSent}
+        >
           Submit
         </p>
       </form>
