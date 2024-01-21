@@ -43,15 +43,16 @@
     align-items: center;
   }
   
-  .addStepButton,  .add-ingredient-button {
+  .addStepButton {
     color: #000000;
     padding: 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
   }
-  
-  .addStepButton:hover,  .add-ingredient-button:hover{
+
+ 
+  .addStepButton:hover{
     border-color: #646464;
     border-radius: 4px;
     transition: all 0.2s ease;
@@ -64,12 +65,10 @@
   }
 
   .add-ingredient-button{
-    width: 2px;
-    height: 2px;
-    transform: translate(20%, 35%);
-    margin: auto 0;
-    border-radius: 50%;
-    background-color: white;
+    border: 1px solid #5a5757;
+    border-radius: 4px;
+    margin-left: 2px;
+    background-color: rgb(255, 245, 232);
   }
 
   .ingredient-item{
@@ -132,8 +131,11 @@
   }
 
   .add-step-button, .remove-step-button{
-    border: none;
-    background-color: none;
+    border: 1px solid #5a5757;
+    border-radius: 4px;
+    margin-left: 2px;
+    background-color: rgb(255, 245, 232);
+    height: 20px;
   }
 
   .recipe-submit-button{

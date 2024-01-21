@@ -95,12 +95,10 @@ function RecipeFormPage() {
             type="button"
             onClick={handleAddIngredient}
           >
-            <FontAwesomeIcon
-              style={{ transform: "translate(-50%, -50%)", color: "grey" }}
-              icon={faPlus}
-            />
+            <FontAwesomeIcon style={{ color: "grey" }} icon={faPlus} />
           </button>
         </div>
+
         <div className="ingredient-shown-container">
           {ingredientInputs.map((ingredient, index) => (
             <div key={index} className="ingredient-item">
@@ -133,7 +131,10 @@ function RecipeFormPage() {
               type="button"
               onClick={() => handleAddStep(index)}
             >
-              <FontAwesomeIcon icon={faPlus} />
+              <FontAwesomeIcon
+                style={{ transform: `translate(0, 6%)` }}
+                icon={faPlus}
+              />
             </button>
 
             <button
@@ -142,7 +143,10 @@ function RecipeFormPage() {
               onClick={() => handleRemoveStep(index)}
               disabled={`${steps.length > 1 ? "" : "true"}`}
             >
-              <FontAwesomeIcon icon={faMinus} />
+              <FontAwesomeIcon
+                style={{ transform: `translate(0, 6%)` }}
+                icon={faMinus}
+              />
             </button>
           </div>
         ))}
