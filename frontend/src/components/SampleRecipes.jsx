@@ -269,6 +269,4 @@ const SampleRecipes = [
   },
 ];
 
-// Include the complete array for all 10 recipes
-
 export default SampleRecipes;

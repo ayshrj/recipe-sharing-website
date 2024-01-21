@@ -1,4 +1,3 @@
-// src/RecipeFormPage.js
 import React, { useState } from "react";
 import "./RecipeFormPage.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
