@@ -11,7 +11,7 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import LoginPopUp from "./LoginPopUp";
 
-const Navbar = ({
+const NavBar = ({
   isUserLoggedIn,
   setIsUserLoggedIn,
   loggedInUserId,
@@ -75,4 +75,4 @@ const Navbar = ({
   );
 };
 
-export default Navbar;
+export default NavBar;
