@@ -32,7 +32,10 @@ const RecipePage = ({ data, isHomePage }) => {
         <h2>Steps:</h2>
         <ol>
           {steps.map((step, index) => (
-            <li key={index}>{step}</li>
+            <React.Fragment key={index}>
+              <li>{step}</li>
+              {index < steps.length - 1 && <div className="steps-border"></div>}
+            </React.Fragment>
           ))}
         </ol>
       </div>

@@ -1,0 +1,21 @@
+.custom-scroll-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+  }
+  
+  .custom-scroll-content {
+    padding-right: 20px; /* To make space for the scrollbar */
+  }
+  
+  .custom-scroll-bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    background-color: #007bff; /* Color of the scrollbar */
+    width: 0; /* Initial width, will be updated dynamically based on scroll position */
+    transition: width 0.3s; /* Optional: Add a smooth transition effect */
+  }
+  

@@ -7,13 +7,14 @@ body, * {
     max-width: 1000px;
     margin: 0 auto;
     margin-bottom: 10px;
+    margin-left: 20px;
     padding: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f8f8f8;
-    border-style: dotted;
+    /* border-style: dotted; */
     border-color: #333;
     border-radius: 8px; /* You can adjust the radius as needed */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     
 }
 
@@ -61,7 +62,9 @@ body, * {
     position: relative;
     counter-increment: step;
     margin-bottom: 15px;
+    
     padding-left: 30px; /* Adjust the left padding as needed */
+    transform: translateX(-30px);
 }
 
 .steps-container li:before {
@@ -78,9 +81,15 @@ body, * {
     position: absolute;
     left: 0; /* Position the number at the left */
     font-size: 15px;
-    transform: translateY(7px);
+    transform: translateY(3px);
 }
-
+.steps-border{
+  width: 100%;
+  margin: 0;
+  height: 1px;
+  background-color: #ddd;
+  transform: translateY(-8px);
+}
   
   .app-container {
     display: flex;

@@ -5,6 +5,8 @@ import "./RecipeList.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const RecipeList = ({ recipes, isHomePage }) => {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -21,6 +23,7 @@ const RecipeList = ({ recipes, isHomePage }) => {
 
   return (
     <div className="recipe-list-container">
+      <div className="left-border"></div>
       <h1 className="recipe-list-title">My Recipes</h1>
       <div className="recipe-list">
         {recipes.map((recipe) => (
@@ -31,7 +34,7 @@ const RecipeList = ({ recipes, isHomePage }) => {
               style={{ display: "flex" }}
             >
               <div style={{ display: "flex" }}>
-                <div
+                {/* <div
                   className={`hamburger ${
                     selectedRecipe &&
                     selectedRecipe.recipeNameId === recipe.recipeNameId
@@ -42,7 +45,7 @@ const RecipeList = ({ recipes, isHomePage }) => {
                   <div className="bar"></div>
                   <div className="bar"></div>
                   <div className="bar"></div>
-                </div>
+                </div> */}
                 {/* {selectedRecipe &&
                 selectedRecipe.recipeNameId === recipe.recipeNameId ? (
                   <FontAwesomeIcon
@@ -54,7 +57,25 @@ const RecipeList = ({ recipes, isHomePage }) => {
                     icon={faEllipsisVertical}
                     style={{ width: "24px" }}
                   />
-                )} */}{" "}
+                )}{" "} */}
+                {selectedRecipe &&
+                selectedRecipe.recipeNameId === recipe.recipeNameId ? (
+                  <FontAwesomeIcon
+                    icon={faCheck}
+                    style={{
+                      marginRight: "17px",
+                      transform: "translate(4px, 6px)",
+                    }}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faXmark}
+                    style={{
+                      marginRight: "17px",
+                      transform: "translate(4px, 6px)",
+                    }}
+                  />
+                )}{" "}
                 {recipe.recipeName}
               </div>
             </div>

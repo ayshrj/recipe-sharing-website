@@ -1,15 +1,31 @@
 /* RecipeList.css */
 .recipe-list-container {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 16px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f8f8;
-    border: 1px solid #ccc; /* Add this line for dotted borders */
-    border-radius: 8px;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
+  position: relative; /* Add position relative to make absolute positioning work */
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  overflow: hidden; /* Hide overflow to prevent the left border from overflowing */
 
+  /* Add padding to the left to create space for the left border */
+  padding-left: 4px;
+  padding-bottom: 35px;
+}
+
+/* New style for the left border */
+.left-border {
+  position: absolute;
+  top: 0;
+  left: 42px;;
+  height: 100%;
+  width: 1px;
+  background-color: #333;
+  margin-left: -3px; /* Adjust this value to control the distance from the left border */
 }
   
   .recipe-list-title {
@@ -26,21 +42,19 @@
   }
   
   .recipe-name {
-    background-color: #d0d0d0;
-    color: #fff;
+    background-color: #f8f8f8;
+    color: #333;
     padding-left: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
     margin: 0px;
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    width: 100%;
-    /* text-align: center; */
-    color: #333; 
+    /* border-radius: 5px; */
+    border-bottom: 1px solid black; /* Specify the border style and color */
     font-size: 24px;
-    margin-bottom: 15px;
-  }
+    width: 100%;
+}
+
   
   .recipe-name:hover {
     background-color: #2980b9;
@@ -61,6 +75,7 @@
     padding-left: 5px;
     padding-right: 5px;
     margin-right: 3px;
+    border-right: 1px solid black;
   }
 
   .bar {

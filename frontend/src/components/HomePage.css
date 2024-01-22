@@ -22,11 +22,33 @@
     border-radius: 50%;
     overflow: hidden;
     transition: box-shadow 0.3s ease;
+    
   }
   
   .logo-banner:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    
   }
+
+  .logo-banner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    max-width: 10%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Add transform to the transition */
+  }
+  
+  .logo-banner:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transform: translate(-50%, -50%) rotate(45deg); /* Add rotate to the transform */
+  }
+  
+  
+  
   
   .recipe-tiles-container {
     display: flex;

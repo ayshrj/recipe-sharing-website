@@ -1,7 +1,7 @@
 // App.js
 import React, { useState } from "react";
 import "./App.css";
-import "./Scroll.css";
+// import "./Scroll.css";
 import NavBar from "./components/NavBar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/HomePage";
