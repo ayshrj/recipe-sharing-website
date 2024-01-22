@@ -33,13 +33,11 @@ const Page1 = ({
       }
     };
 
-    // Call retrieveUserRecipes when the component mounts
     retrieveUserRecipes();
-  }, []); // Empty dependency array to run the effect only once on mount
+  }, []);
 
   return (
     <div>
-      {/* You can remove the button since retrieveUserRecipes is now called automatically */}
       <RecipeList recipes={ownedRecipe} isHomePage={isHomePage} />
     </div>
   );

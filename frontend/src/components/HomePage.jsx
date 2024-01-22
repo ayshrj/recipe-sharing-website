@@ -6,15 +6,18 @@ import RecipeTile from "./RecipeTile";
 import WindowWidthCalculator from "./WindowWidthCalculator";
 import axios from "axios";
 import SampleRecipes from "./SampleRecipes";
+import SampleMyRecipes from "./SampleMyRecipes";
 
 const HomePage = ({
   setIsHomePage,
   loggedInUserId,
   setIsUserLoggedIn,
+  setOwnedRecipe,
   setFavourtieRecipe,
 }) => {
   setIsHomePage(true);
   const [allRecipes, setAllRecipes] = useState([]);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
   const { windowWidth } = WindowWidthCalculator();
 
   useEffect(() => {
@@ -28,6 +31,11 @@ const HomePage = ({
           setAllRecipes(response.data.allRecipes);
           console.log(response.data.allRecipes);
         } else {
+          setShowErrorMessage(true);
+          setTimeout(() => {
+            setShowErrorMessage(false);
+          }, 5000);
+
           alert("Error retrieving user recipes. " + response.data.message);
         }
       } catch (error) {
@@ -51,8 +59,33 @@ const HomePage = ({
           }
         );
         setAllRecipes(SampleRecipesConvertedToObject);
+        const SampleMyRecipesConvertedToObject = SampleMyRecipes.map(
+          (originalRecipe) => {
+            // Convert ingredients to the desired format
+            const convertedIngredients = Object.entries(
+              originalRecipe.ingredients
+            ).map(([name, quantity]) => ({ name, quantity }));
+
+            // Create the converted recipe object
+            const convertedRecipe = {
+              recipeOwnerId: originalRecipe.recipeOwnerId,
+              recipeNameId: originalRecipe.recipeNameId,
+              recipeName: originalRecipe.recipeName,
+              ingredients: convertedIngredients,
+              steps: originalRecipe.steps,
+            };
+
+            return convertedRecipe;
+          }
+        );
+        setOwnedRecipe(SampleMyRecipesConvertedToObject);
+
         setIsUserLoggedIn(true);
-        alert("Backend Server is Not Running, you are seeing placeholder");
+        setShowErrorMessage(true);
+        setTimeout(() => {
+          setShowErrorMessage(false);
+        }, 5000);
+
         console.error("Error retrieving user recipes:", error);
       }
     };
@@ -62,6 +95,9 @@ const HomePage = ({
 
   return (
     <>
+      <div className={`error-message ${showErrorMessage ? "" : "hidden"}`}>
+        Backend Server is Not Running, you are seeing placeholders
+      </div>
       <div className="banner-container">
         <img src={Banner} alt="Banner" className="banner" />
         <img src={Logo} alt="Logo" className="logo-banner" draggable="false" />

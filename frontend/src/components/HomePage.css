@@ -53,3 +53,22 @@
     }
   }
   
+  .error-message {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: #ff7f7f;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .error-message.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }

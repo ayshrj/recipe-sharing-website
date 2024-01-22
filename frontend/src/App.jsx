@@ -37,6 +37,7 @@ function App() {
                 setIsHomePage={setIsHomePage}
                 loggedInUserId={loggedInUserId}
                 setIsUserLoggedIn={setIsUserLoggedIn}
+                setOwnedRecipe={setOwnedRecipe}
                 setFavourtieRecipe={setFavourtieRecipe}
               />
             }
