@@ -61,20 +61,26 @@ body, * {
     position: relative;
     counter-increment: step;
     margin-bottom: 15px;
-  }
-  
-  .steps-container li:before {
+    padding-left: 30px; /* Adjust the left padding as needed */
+}
+
+.steps-container li:before {
     content: counter(step);
-    background-color: #3498db;
-    color: #fff;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
+    background-color: transparent;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 0;
+    width: 15px;
+    height: 15px;
     text-align: center;
-    line-height: 25px;
-    margin-right: 10px;
+    line-height: 14px;
     display: inline-block;
-  }
+    position: absolute;
+    left: 0; /* Position the number at the left */
+    font-size: 15px;
+    transform: translateY(7px);
+}
+
   
   .app-container {
     display: flex;

@@ -92,7 +92,7 @@ function RecipeFormPage({ loggedInUserId }) {
         console.log(response.data.success);
         setRecipeName("");
         setSteps([""]);
-        setIngredientInputs([]);
+        setIngredientInputs([""]);
         setCurrentIngredient("");
         setCurrentIngredientQuantity("");
       } else {
@@ -100,6 +100,11 @@ function RecipeFormPage({ loggedInUserId }) {
       }
     } catch (error) {
       console.error("Error during registration:", error);
+      setRecipeName("");
+      setSteps([""]);
+      setIngredientInputs([""]);
+      setCurrentIngredient("");
+      setCurrentIngredientQuantity("");
     }
   };
 

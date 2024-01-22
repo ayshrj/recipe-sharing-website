@@ -54,3 +54,32 @@
     background-color: #ecf0f1;
   }
   
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-right: 3px;
+  }
+
+  .bar {
+    width: 20px;
+    height: 2px;
+    background-color: #333;
+    margin: 2px 0;
+    transition: 0.4s;
+    transform: translateY(8px);
+  }
+
+  .hamburger.open .bar:nth-child(1) {
+    transform: translate(-3px, 8px);
+  }
+
+  .hamburger.open .bar:nth-child(2) {
+    transform: translate(3px, 8px);
+  }
+
+  .hamburger.open .bar:nth-child(3) {
+    transform: translate(-3px, 8px);
+  }

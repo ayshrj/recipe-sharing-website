@@ -30,8 +30,20 @@ const RecipeList = ({ recipes, isHomePage }) => {
               onClick={() => handleRecipeClick(recipe)}
               style={{ display: "flex" }}
             >
-              <div>
-                {selectedRecipe &&
+              <div style={{ display: "flex" }}>
+                <div
+                  className={`hamburger ${
+                    selectedRecipe &&
+                    selectedRecipe.recipeNameId === recipe.recipeNameId
+                      ? "open"
+                      : ""
+                  }`}
+                >
+                  <div className="bar"></div>
+                  <div className="bar"></div>
+                  <div className="bar"></div>
+                </div>
+                {/* {selectedRecipe &&
                 selectedRecipe.recipeNameId === recipe.recipeNameId ? (
                   <FontAwesomeIcon
                     icon={faEllipsis}
@@ -42,7 +54,7 @@ const RecipeList = ({ recipes, isHomePage }) => {
                     icon={faEllipsisVertical}
                     style={{ width: "24px" }}
                   />
-                )}{" "}
+                )} */}{" "}
                 {recipe.recipeName}
               </div>
             </div>

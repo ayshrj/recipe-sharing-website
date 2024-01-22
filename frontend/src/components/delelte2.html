@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .hamburger {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .bar {
+        width: 30px;
+        height: 3px;
+        background-color: #333;
+        margin: 6px 0;
+        transition: 0.4s;
+      }
+
+      .hamburger.open .bar:nth-child(1) {
+        transform: translate(-6px);
+      }
+
+      .hamburger.open .bar:nth-child(2) {
+        transform: translate(6px);
+      }
+
+      .hamburger.open .bar:nth-child(3) {
+        transform: translate(-6px);
+      }
+
+      .icon-container {
+        margin: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="icon-container">
+      <div class="hamburger" onclick="toggleMenu(this)">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+
+    <script>
+      function toggleMenu(element) {
+        element.classList.toggle("open");
+      }
+    </script>
+  </body>
+</html>
