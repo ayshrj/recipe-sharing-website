@@ -2,7 +2,7 @@
 import React from "react";
 import "./RecipePage.css";
 
-const RecipePage = ({ data }) => {
+const RecipePage = ({ data, isHomePage }) => {
   const { recipeName, ingredients, steps } = data;
 
   function toPascalCaseWithSpaces(str) {
@@ -15,7 +15,7 @@ const RecipePage = ({ data }) => {
 
   return (
     <div className="recipe-container">
-      <h1 className="recipe-name-opened">{recipeName}</h1>
+      {isHomePage && <h1 className="recipe-name-opened">{recipeName}</h1>}
 
       <div className="ingredients-container">
         <h2>Ingredients:</h2>

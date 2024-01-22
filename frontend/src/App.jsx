@@ -49,6 +49,7 @@ function App() {
                 loggedInUserId={loggedInUserId}
                 ownedRecipe={ownedRecipe}
                 setOwnedRecipe={setOwnedRecipe}
+                isHomePage={isHomePage}
               />
             }
           />
@@ -67,6 +68,9 @@ function App() {
               <Page3
                 setIsHomePage={setIsHomePage}
                 loggedInUserId={loggedInUserId}
+                favourtieRecipe={favourtieRecipe}
+                setFavourtieRecipe={setFavourtieRecipe}
+                isHomePage={isHomePage}
               />
             }
           />
@@ -76,8 +80,6 @@ function App() {
               <Page4
                 setIsHomePage={setIsHomePage}
                 loggedInUserId={loggedInUserId}
-                favourtieRecipe={favourtieRecipe}
-                setFavourtieRecipe={setFavourtieRecipe}
               />
             }
           />

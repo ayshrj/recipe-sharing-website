@@ -1,13 +1,16 @@
 /* RecipeList.css */
 .recipe-list-container {
-    max-width: 725px;
+    max-width: 680px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 16px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f8f8f8;
+    border: 1px solid #ccc; /* Add this line for dotted borders */
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+
+}
   
   .recipe-list-title {
     color: #333;
@@ -23,15 +26,20 @@
   }
   
   .recipe-name {
-    background-color: #3498db;
+    background-color: #d0d0d0;
     color: #fff;
-    padding: 10px 15px;
-    margin: 5px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 0px;
     cursor: pointer;
     border-radius: 5px;
     font-size: 16px;
     width: 100%;
-    text-align: center;
+    /* text-align: center; */
+    color: #333; 
+    font-size: 24px;
+    margin-bottom: 15px;
   }
   
   .recipe-name:hover {

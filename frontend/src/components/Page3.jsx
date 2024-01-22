@@ -5,6 +5,7 @@ const Page3 = ({
   loggedInUserId,
   favourtieRecipe,
   setFavourtieRecipe,
+  isHomePage,
 }) => {
   setIsHomePage(false);
   return (

@@ -2,8 +2,11 @@
 import React, { useState } from "react";
 import RecipePage from "./RecipePage";
 import "./RecipeList.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 
-const RecipeList = ({ recipes }) => {
+const RecipeList = ({ recipes, isHomePage }) => {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
   const handleRecipeClick = (recipe) => {
@@ -25,13 +28,29 @@ const RecipeList = ({ recipes }) => {
             <div
               className="recipe-name"
               onClick={() => handleRecipeClick(recipe)}
+              style={{ display: "flex" }}
             >
-              {recipe.recipeName}
+              <div>
+                {selectedRecipe &&
+                selectedRecipe.recipeNameId === recipe.recipeNameId ? (
+                  <FontAwesomeIcon
+                    icon={faEllipsis}
+                    style={{ width: "24px" }}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faEllipsisVertical}
+                    style={{ width: "24px" }}
+                  />
+                )}{" "}
+                {recipe.recipeName}
+              </div>
             </div>
             {selectedRecipe &&
               selectedRecipe.recipeNameId === recipe.recipeNameId && (
                 <RecipePage
                   data={selectedRecipe}
+                  isHomePage={isHomePage}
                   onClose={() => setSelectedRecipe(null)}
                 />
               )}
