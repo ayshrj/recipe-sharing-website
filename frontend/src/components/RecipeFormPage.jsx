@@ -5,8 +5,9 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import SampleRecipes from "./SampleRecipes";
+import axios from "axios";
 
-function RecipeFormPage() {
+function RecipeFormPage({ loggedInUserId }) {
   const [steps, setSteps] = useState([""]);
   const [recipeName, setRecipeName] = useState("");
   const [currentIngredient, setCurrentIngredient] = useState("");
@@ -30,7 +31,11 @@ function RecipeFormPage() {
     if (currentIngredient && currentIngredientQuantity) {
       const newIngredients = [
         ...ingredientInputs,
-        { name: currentIngredient, quantity: currentIngredientQuantity },
+        {
+          // name: toPascalCase(currentIngredient),
+          name: currentIngredient,
+          quantity: currentIngredientQuantity,
+        },
       ];
       setCurrentIngredient("");
       setCurrentIngredientQuantity("");
@@ -50,14 +55,52 @@ function RecipeFormPage() {
     setSteps(newSteps);
   };
 
-  const showDataSent = () => {
-    console.log(SampleRecipes);
-    const data = {
-      recipeName: recipeName,
-      ingredients: ingredientInputs,
-      steps: steps.filter((value) => value !== ""),
-    };
-    console.log(data);
+  // const showDataSent = () => {
+  //   console.log(SampleRecipes);
+  //   const data = {
+  //     recipeName: recipeName,
+  //     ingredients: ingredientInputs,
+  //     steps: steps.filter((value) => value !== ""),
+  //   };
+  //   console.log(data);
+  // };
+
+  function toPascalCase(sentence) {
+    return sentence
+      .toLowerCase()
+      .replace(/(?:^|\s)\w/g, function (match) {
+        return match.toUpperCase();
+      })
+      .replace(/\s/g, "");
+  }
+
+  const handleRegister = async () => {
+    try {
+      console.log({ loggedInUserId });
+      setSteps(steps.filter((value) => value !== ""));
+      const response = await axios.post(
+        "http://localhost:5000/user/addRecipe",
+        {
+          loggedInUserId,
+          recipeName,
+          ingredientInputs,
+          steps,
+        }
+      );
+
+      if (response.data.success) {
+        console.log(response.data.success);
+        setRecipeName("");
+        setSteps([""]);
+        setIngredientInputs([]);
+        setCurrentIngredient("");
+        setCurrentIngredientQuantity("");
+      } else {
+        console.log("Registration failed. " + response.data.message);
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+    }
   };
 
   return (
@@ -157,7 +200,7 @@ function RecipeFormPage() {
         <p
           className="recipe-submit-button"
           type="submit"
-          onClick={showDataSent}
+          onClick={handleRegister}
         >
           Submit
         </p>

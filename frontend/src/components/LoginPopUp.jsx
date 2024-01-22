@@ -111,7 +111,7 @@ const LoginPopUp = ({
         {isUserLoggedIn ? (
           <FontAwesomeIcon icon={faUser} />
         ) : (
-          <FontAwesomeIcon icon={faSignInAlt} />
+          <FontAwesomeIcon icon={faSignInAlt} style={{ color: "grey" }} />
         )}
       </button>
 
@@ -125,7 +125,10 @@ const LoginPopUp = ({
                 </label>
                 <button className="logout-button" onClick={handleLogout}>
                   {"Logout      "}
-                  <FontAwesomeIcon icon={faSignOutAlt} />
+                  <FontAwesomeIcon
+                    icon={faSignOutAlt}
+                    style={{ color: "white" }}
+                  />
                 </button>
               </div>
             ) : loginWindow ? (

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Page3 = ({ setIsHomePage }) => {
+const Page3 = ({ setIsHomePage, loggedInUserId }) => {
   setIsHomePage(false);
   return (
     <div>

@@ -10,6 +10,7 @@ const RecipeTile = ({ recipeOwnerId, recipeName, ingredients, inputWidth }) => {
     return result;
   }
 
+  // const slicedIngredients = Object.entries(ingredients).slice(0);
   const slicedIngredients = Object.entries(ingredients);
 
   return (
@@ -17,14 +18,25 @@ const RecipeTile = ({ recipeOwnerId, recipeName, ingredients, inputWidth }) => {
       <h2>{recipeName}</h2>
       <p>By: {recipeOwnerId}</p>
       <h3>Ingredients:</h3>
-      {slicedIngredients.map(([ingredient, quantity], index) => (
+      {/* {slicedIngredients.map(([ingredient, quantity], index) => (
         <span key={index}>
           {toPascalCaseWithSpaces(ingredient)}
           {index < slicedIngredients.length - 1 ? ", " : ""}
         </span>
-      ))}
+      ))} */}
+      {slicedIngredients.map(
+        ([index, ingredient]) =>
+          index < 5 && (
+            <span key={index}>
+              {toPascalCaseWithSpaces(ingredient.name)}
+              {index < slicedIngredients.length - 1 ? ", " : ""}
+            </span>
+          )
+      )}
     </div>
   );
 };
+
+// const slicedIngredients = Object.entries(ingredients);
 
 export default RecipeTile;

@@ -14,10 +14,17 @@ app.use(bodyParser.json());
 
 // MongoDB Connection
 const uri = process.env.MONGODB_URI;
-mongoose.connect(uri);
+mongoose.connect(uri, {});
+
+// MongoDB Global Information Schema
+const globalInfoSchema = new mongoose.Schema({
+  totalUser: Number,
+  recipeID: Number,
+});
+
+const GlobalInfo = mongoose.model("GlobalInfo", globalInfoSchema);
 
 // MongoDB User Schema
-var totalUser = 0;
 const userSchema = new mongoose.Schema({
   username: String,
   password: String,
@@ -26,7 +33,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
-// MongoDB recipeIdSchema Schema
+// MongoDB RecipeIdSchema Schema
 const recipeIdSchema = new mongoose.Schema({
   recipeid: Number,
   recipeName: String,
@@ -40,7 +47,34 @@ const userInfoSchema = new mongoose.Schema({
   savedRecipe: [recipeIdSchema],
 });
 
+// MongoDB RecipeInfo
+const recipeInfoById = new mongoose.Schema({
+  recipeOwnerId: Number,
+  recipeNameId: Number,
+  recipeName: String,
+  ingredients: mongoose.Schema.Types.Mixed,
+  steps: [String],
+});
+
 const UserInfo = mongoose.model("UserInfo", userInfoSchema);
+
+const RecipeInfoByIdInfo = mongoose.model("RecipeInfoByIdInfo", recipeInfoById);
+
+// Server startup logic
+// app.listen(PORT + 1, async () => {
+//   console.log(`Server is running on port ${PORT}`);
+
+//   const globalInfo = await GlobalInfo.findOne();
+
+//   if (!globalInfo) {
+//     const newGlobalInfo = new GlobalInfo({
+//       totalUser: 0,
+//       recipeID: 0,
+//     });
+
+//     await newGlobalInfo.save();
+//   }
+// });
 
 // Login Route
 app.post("/login", async (req, res) => {
@@ -78,53 +112,71 @@ app.post("/login", async (req, res) => {
 });
 
 // Registration Route
+// Registration Route
 app.post("/register", async (req, res) => {
   const { username, password, name } = req.body;
 
   try {
-    // Checking if the username already exists
-    const existingUser = await User.findOne({ username });
-
-    if (existingUser) {
-      return res.json({ success: false, message: "Username already exists" });
-    }
-
-    // Hashing the password
-    const hashedPassword = bcrypt.hashSync(password, 10);
-
-    // Creating a new user
+    const globalInfo = await GlobalInfo.findOne();
     const newUser = new User({
       username,
-      password: hashedPassword,
-      userid: totalUser,
+      password: bcrypt.hashSync(password, 10),
+      userid: globalInfo.totalUser,
     });
 
     await newUser.save();
 
-    //Adding userIdInfo
+    // Update the global totalUser
+    globalInfo.totalUser++;
+    await globalInfo.save();
+
+    // Adding userIdInfo
     const newUserId = new UserInfo({
-      userid: totalUser,
+      userid: newUser.userid,
       name: name,
+      myRecipe: [],
+      savedRecipe: [],
     });
+
+    console.log(newUser.userid);
 
     await newUserId.save();
 
-    totalUser++;
-
     res.json({ success: true, message: "Registration successful" });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
 
 // Retrieving user recipes route
 app.get("/user/recipes", async (req, res) => {
-  const { userid } = req.query;
-
+  const { loggedInUserId } = req.query;
+  console.log(loggedInUserId);
   try {
-    const userInfo = await UserInfo.findOne({ userid });
+    const userInfo = await UserInfo.findOne({ userid: loggedInUserId });
     if (userInfo) {
-      res.json({ success: true, myRecipe: userInfo.myRecipe });
+      console.log("userFound");
+      const myRecipe = userInfo.myRecipe;
+      let recipeCompleteInfo = [];
+
+      for (let i = 0; i < myRecipe.length; ++i) {
+        try {
+          console.log(myRecipe[i].recipeid);
+          if (myRecipe[i].recipeid !== undefined) {
+            const recipeInfo = await RecipeInfoByIdInfo.findOne({
+              recipeNameId: myRecipe[i].recipeid,
+            });
+
+            recipeCompleteInfo.push(recipeInfo);
+          }
+        } catch (error) {
+          res
+            .status(500)
+            .json({ success: false, message: "Internal server error" });
+        }
+      }
+      res.json({ success: true, myRecipe: recipeCompleteInfo });
     } else {
       res.json({ success: false, message: "User not found" });
     }
@@ -134,30 +186,54 @@ app.get("/user/recipes", async (req, res) => {
 });
 
 // Updating user recipes route
-app.post("/user/add-recipe", async (req, res) => {
-  const { userid, recipeid, recipeName } = req.body;
+app.post("/user/addRecipe", async (req, res) => {
+  const { loggedInUserId, recipeName, ingredientInputs, steps } = req.body;
 
   try {
-    console.log(userid, recipeid, recipeName);
-    const userInfo = await UserInfo.findOne({ userid });
-    if (userInfo) {
-      // Checking if the recipeid already exists in myRecipe array
-      const existingRecipe = userInfo.myRecipe.find(
-        (recipe) => recipe.recipeid == recipeid
-      );
+    const globalInfo = await GlobalInfo.findOne();
+    const userInfo = await UserInfo.findOne({ userid: loggedInUserId });
 
-      if (existingRecipe) {
-        res.json({ success: false, message: "Recipe already exists" });
-      } else {
-        // Adding the new recipe to the myRecipe array
-        userInfo.myRecipe.push({ recipeid, recipeName });
-        await userInfo.save();
-        res.json({ success: true, message: "Recipe added successfully" });
-      }
+    if (userInfo) {
+      // Adding the new recipe to the myRecipe array
+      userInfo.myRecipe.push({
+        recipeid: globalInfo.recipeID,
+        recipeName: recipeName,
+      });
+      await userInfo.save();
+
+      // Create a new document using the RecipeInfoByIdInfo model
+      const newRecipe = new RecipeInfoByIdInfo({
+        recipeOwnerId: loggedInUserId,
+        recipeNameId: globalInfo.recipeID,
+        recipeName: recipeName,
+        ingredients: ingredientInputs,
+        steps: steps,
+      });
+
+      // Save the new recipe document
+      await newRecipe.save();
+
+      // Update the global recipeID
+      globalInfo.recipeID++;
+      await globalInfo.save();
+
+      res.json({ success: true, message: "Recipe added successfully" });
     } else {
       res.json({ success: false, message: "User not found" });
     }
   } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
+//Retrieving All Recipes in Complete Recipe Database
+app.get("/recipes", async (req, res) => {
+  try {
+    const allRecipes = await RecipeInfoByIdInfo.find();
+    res.json({ success: true, allRecipes: allRecipes });
+  } catch (error) {
+    console.error(error);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 });

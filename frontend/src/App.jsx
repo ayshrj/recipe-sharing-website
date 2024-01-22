@@ -10,6 +10,7 @@ import Page2 from "./components/Page2";
 import Page3 from "./components/Page3";
 import Page4 from "./components/Page4";
 import RecipeFormPage from "./components/RecipeFormPage";
+import Login from "./components/Login";
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -27,22 +28,50 @@ function App() {
           isHomePage={isHomePage}
         />
         <Routes>
-          <Route path="/" element={<Home setIsHomePage={setIsHomePage} />} />
+          <Route
+            path="/"
+            element={
+              <Home
+                setIsHomePage={setIsHomePage}
+                loggedInUserId={loggedInUserId}
+              />
+            }
+          />
           <Route
             path="/page1"
-            element={<Page1 setIsHomePage={setIsHomePage} />}
+            element={
+              <Page1
+                setIsHomePage={setIsHomePage}
+                loggedInUserId={loggedInUserId}
+              />
+            }
           />
           <Route
             path="/page2"
-            element={<Page2 setIsHomePage={setIsHomePage} />}
+            element={
+              <Page2
+                setIsHomePage={setIsHomePage}
+                loggedInUserId={loggedInUserId}
+              />
+            }
           />
           <Route
             path="/page3"
-            element={<Page3 setIsHomePage={setIsHomePage} />}
+            element={
+              <Page3
+                setIsHomePage={setIsHomePage}
+                loggedInUserId={loggedInUserId}
+              />
+            }
           />
           <Route
             path="/page4"
-            element={<Page4 setIsHomePage={setIsHomePage} />}
+            element={
+              <Page4
+                setIsHomePage={setIsHomePage}
+                loggedInUserId={loggedInUserId}
+              />
+            }
           />
         </Routes>
       </div>

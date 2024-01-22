@@ -81,7 +81,7 @@ const Login = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:5000/user/add-recipe",
+        "http://localhost:5000/user/addRecipe",
         {
           userid: loggedInUserId,
           recipeid: newRecipeId,
