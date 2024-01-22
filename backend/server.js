@@ -14,7 +14,20 @@ app.use(bodyParser.json());
 
 // MongoDB Connection
 const uri = process.env.MONGODB_URI;
-mongoose.connect(uri, {});
+
+async function connectToDatabase() {
+  try {
+    await mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.error("Error connecting to MongoDB:", error.message);
+  }
+}
+
+connectToDatabase();
 
 // MongoDB Global Information Schema
 const globalInfoSchema = new mongoose.Schema({
