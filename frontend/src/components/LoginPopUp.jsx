@@ -12,23 +12,24 @@ const LoginPopUp = ({
   setIsUserLoggedIn,
   loggedInUserId,
   setLoggedInUserId,
+  loginPopUpIsOpen,
+  setLoginPopUpIsOpen,
 }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
   const [loginWindow, setLoginWindow] = useState(true);
   const [userNameFound, setUserNameFound] = useState(false);
   const [correctPassword, setCorrectPassword] = useState(false);
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
   const togglePopup = () => {
-    if (isOpen === true) {
+    if (loginPopUpIsOpen === true) {
       setUserNameFound(false);
       setCorrectPassword(false);
       setSubmitButtonClicked(false);
-      setIsOpen(false);
+      setLoginPopUpIsOpen(false);
     } else {
-      setIsOpen(true);
+      setLoginPopUpIsOpen(true);
     }
   };
 
@@ -49,7 +50,7 @@ const LoginPopUp = ({
         console.log("Login successful. Welcome, " + response.data.name);
         setUserNameFound(true);
         setCorrectPassword(true);
-        setIsOpen(false);
+        setLoginPopUpIsOpen(false);
         setName(response.data.name);
         setLoggedInUserId(response.data.userid);
         setIsUserLoggedIn(true);
@@ -81,7 +82,7 @@ const LoginPopUp = ({
         setUserNameFound(false);
         setLoginWindow(true);
         console.log("Registration successful");
-        setIsOpen(false);
+        setLoginPopUpIsOpen(false);
         handleLogin();
       } else {
         setUserNameFound(true);
@@ -96,7 +97,7 @@ const LoginPopUp = ({
     setUsername("");
     setPassword("");
     setIsUserLoggedIn(false);
-    setIsOpen(false);
+    setLoginPopUpIsOpen(false);
     setLoggedInUserId("");
     setName("");
   };
@@ -116,7 +117,7 @@ const LoginPopUp = ({
       </button>
 
       <div>
-        {isOpen && (
+        {loginPopUpIsOpen && (
           <div className="popup-container">
             {isUserLoggedIn ? (
               <div className="popup">

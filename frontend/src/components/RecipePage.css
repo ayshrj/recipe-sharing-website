@@ -1,0 +1,85 @@
+/* RecipePage.css */
+body, * {
+    text-align: left;
+  }
+
+  .recipe-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f8f8;
+    border-style: dotted;
+    border-color: #333;
+    border-radius: 8px; /* You can adjust the radius as needed */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+  
+  .recipe-name {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .ingredients-container,
+  .steps-container {
+    margin-top: 20px;
+  }
+  
+  ul,
+  ol {
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  /* Style for Ingredients list */
+  .ingredients-container ul {
+    list-style-type: none;
+  }
+  
+  .ingredients-container li {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    padding: 8px 0;
+  }
+  
+  /* Style for Steps list */
+  .steps-container ol {
+    counter-reset: step;
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .steps-container li {
+    position: relative;
+    counter-increment: step;
+    margin-bottom: 15px;
+  }
+  
+  .steps-container li:before {
+    content: counter(step);
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    margin-right: 10px;
+    display: inline-block;
+  }
+  
+  .app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ecf0f1;
+    text-align: left;
+  }
+  

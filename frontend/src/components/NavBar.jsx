@@ -19,7 +19,7 @@ const NavBar = ({
   isHomePage,
 }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
-
+  const [loginPopUpIsOpen, setLoginPopUpIsOpen] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
@@ -31,6 +31,12 @@ const NavBar = ({
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const openPopUpWhenNotLoggedIn = () => {
+    if (!isUserLoggedIn) {
+      setLoginPopUpIsOpen(true);
+    }
+  };
 
   return (
     <nav
@@ -52,14 +58,29 @@ const NavBar = ({
         <Link to="/" className="NavBarButton">
           <FontAwesomeIcon icon={faHome} />
         </Link>
-        <Link to="/page1" className="NavBarButton">
-          <FontAwesomeIcon icon={faBowlFood} />
+        <Link
+          to={`${!isUserLoggedIn ? "/" : "/page1"}`}
+          className="NavBarButton"
+        >
+          <FontAwesomeIcon
+            icon={faBowlFood}
+            onClick={openPopUpWhenNotLoggedIn}
+          />
         </Link>
-        <Link to="/page2" className="NavBarButton">
-          <FontAwesomeIcon icon={faPenToSquare} />
+        <Link
+          to={`${!isUserLoggedIn ? "/" : "/page2"}`}
+          className="NavBarButton"
+        >
+          <FontAwesomeIcon
+            icon={faPenToSquare}
+            onClick={openPopUpWhenNotLoggedIn}
+          />
         </Link>
-        <Link to="/page3" className="NavBarButton">
-          <FontAwesomeIcon icon={faStar} />
+        <Link
+          to={`${!isUserLoggedIn ? "/" : "/page3"}`}
+          className="NavBarButton"
+        >
+          <FontAwesomeIcon icon={faStar} onClick={openPopUpWhenNotLoggedIn} />
         </Link>
         {/* <Link to="/page4" className="NavBarButton">
           <FontAwesomeIcon icon={faRobot} />
@@ -69,6 +90,8 @@ const NavBar = ({
           setIsUserLoggedIn={setIsUserLoggedIn}
           loggedInUserId={loggedInUserId}
           setLoggedInUserId={setLoggedInUserId}
+          loginPopUpIsOpen={loginPopUpIsOpen}
+          setLoginPopUpIsOpen={setLoginPopUpIsOpen}
         />
       </div>
     </nav>

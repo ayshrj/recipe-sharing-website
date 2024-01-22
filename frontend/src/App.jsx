@@ -16,6 +16,8 @@ function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [loggedInUserId, setLoggedInUserId] = useState("");
   const [isHomePage, setIsHomePage] = useState(true);
+  const [ownedRecipe, setOwnedRecipe] = useState([]);
+  const [favourtieRecipe, setFavourtieRecipe] = useState([]);
 
   return (
     <Router>
@@ -34,6 +36,8 @@ function App() {
               <Home
                 setIsHomePage={setIsHomePage}
                 loggedInUserId={loggedInUserId}
+                setIsUserLoggedIn={setIsUserLoggedIn}
+                setFavourtieRecipe={setFavourtieRecipe}
               />
             }
           />
@@ -43,6 +47,8 @@ function App() {
               <Page1
                 setIsHomePage={setIsHomePage}
                 loggedInUserId={loggedInUserId}
+                ownedRecipe={ownedRecipe}
+                setOwnedRecipe={setOwnedRecipe}
               />
             }
           />
@@ -70,6 +76,8 @@ function App() {
               <Page4
                 setIsHomePage={setIsHomePage}
                 loggedInUserId={loggedInUserId}
+                favourtieRecipe={favourtieRecipe}
+                setFavourtieRecipe={setFavourtieRecipe}
               />
             }
           />

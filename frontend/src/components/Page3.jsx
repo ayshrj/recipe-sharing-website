@@ -1,6 +1,11 @@
 import React from "react";
 
-const Page3 = ({ setIsHomePage, loggedInUserId }) => {
+const Page3 = ({
+  setIsHomePage,
+  loggedInUserId,
+  favourtieRecipe,
+  setFavourtieRecipe,
+}) => {
   setIsHomePage(false);
   return (
     <div>

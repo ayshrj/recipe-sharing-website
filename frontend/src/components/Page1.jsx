@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-const Page1 = ({ setIsHomePage, loggedInUserId }) => {
-  const [userRecipes, setUserRecipes] = useState([]);
+import RecipePage from "./RecipePage";
+import RecipeList from "./RecipeList";
+const Page1 = ({
+  setIsHomePage,
+  loggedInUserId,
+  ownedRecipe,
+  setOwnedRecipe,
+}) => {
   setIsHomePage(false);
-
   const retrieveUserRecipes = async () => {
     try {
       const response = await axios.get("http://localhost:5000/user/recipes", {
@@ -15,8 +20,8 @@ const Page1 = ({ setIsHomePage, loggedInUserId }) => {
       console.log("LogginInUserIdIsSent", loggedInUserId);
 
       if (response.data.success) {
-        setUserRecipes(response.data.myRecipe);
-        console.log("recipes added", userRecipes);
+        setOwnedRecipe(response.data.myRecipe);
+        console.log("recipes added", ownedRecipe);
       } else {
         alert("Error retrieving user recipes. " + response.data.message);
       }
@@ -27,8 +32,7 @@ const Page1 = ({ setIsHomePage, loggedInUserId }) => {
 
   return (
     <div>
-      <h1 onClick={retrieveUserRecipes}>Page 1</h1>
-      <p>This is the content of Page 1.</p>
+      <RecipeList recipes={ownedRecipe} />
     </div>
   );
 };

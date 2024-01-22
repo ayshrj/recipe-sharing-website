@@ -7,7 +7,12 @@ import WindowWidthCalculator from "./WindowWidthCalculator";
 import axios from "axios";
 import SampleRecipes from "./SampleRecipes";
 
-const HomePage = ({ setIsHomePage, loggedInUserId }) => {
+const HomePage = ({
+  setIsHomePage,
+  loggedInUserId,
+  setIsUserLoggedIn,
+  setFavourtieRecipe,
+}) => {
   setIsHomePage(true);
   const [allRecipes, setAllRecipes] = useState([]);
   const { windowWidth } = WindowWidthCalculator();
@@ -46,6 +51,8 @@ const HomePage = ({ setIsHomePage, loggedInUserId }) => {
           }
         );
         setAllRecipes(SampleRecipesConvertedToObject);
+        setIsUserLoggedIn(true);
+        alert("Backend Server is Not Running, you are seeing placeholder");
         console.error("Error retrieving user recipes:", error);
       }
     };
@@ -60,9 +67,6 @@ const HomePage = ({ setIsHomePage, loggedInUserId }) => {
         <img src={Logo} alt="Logo" className="logo-banner" draggable="false" />
       </div>
       <div className="page-content">
-        <h1 onClick={console.log(typeof allRecipes)}>
-          Welcome to the Home Page!
-        </h1>
         <div className="recipe-tiles-container">
           {windowWidth <= 700 ? (
             <div className="recipe-tiles-container-right">
