@@ -9,9 +9,8 @@ const Page1 = ({
   setOwnedRecipe,
   isHomePage,
 }) => {
+  setIsHomePage(false);
   useEffect(() => {
-    setIsHomePage(false);
-
     const retrieveUserRecipes = async () => {
       try {
         const response = await axios.get("http://localhost:5000/user/recipes", {
@@ -38,7 +37,11 @@ const Page1 = ({
 
   return (
     <div>
-      <RecipeList recipes={ownedRecipe} isHomePage={isHomePage} />
+      <RecipeList
+        recipes={ownedRecipe}
+        isHomePage={isHomePage}
+        title={"My Recipes"}
+      />
     </div>
   );
 };

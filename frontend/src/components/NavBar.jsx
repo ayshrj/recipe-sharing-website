@@ -17,6 +17,8 @@ const NavBar = ({
   loggedInUserId,
   setLoggedInUserId,
   isHomePage,
+  openRecipeWindow,
+  setOpenRecipeWindow,
 }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [loginPopUpIsOpen, setLoginPopUpIsOpen] = useState(false);
@@ -56,7 +58,14 @@ const NavBar = ({
       </div>
       <div className="NavBarButtons">
         <Link to="/" className="NavBarButton">
-          <FontAwesomeIcon icon={faHome} />
+          <FontAwesomeIcon
+            icon={faHome}
+            onClick={() => {
+              if (openRecipeWindow) {
+                setOpenRecipeWindow(false);
+              }
+            }}
+          />
         </Link>
         <Link
           to={`${!isUserLoggedIn ? "/" : "/page1"}`}
@@ -64,7 +73,10 @@ const NavBar = ({
         >
           <FontAwesomeIcon
             icon={faBowlFood}
-            onClick={openPopUpWhenNotLoggedIn}
+            onClick={() => {
+              openPopUpWhenNotLoggedIn();
+              setOpenRecipeWindow(false);
+            }}
           />
         </Link>
         <Link
@@ -73,14 +85,23 @@ const NavBar = ({
         >
           <FontAwesomeIcon
             icon={faPenToSquare}
-            onClick={openPopUpWhenNotLoggedIn}
+            onClick={() => {
+              openPopUpWhenNotLoggedIn();
+              setOpenRecipeWindow(false);
+            }}
           />
         </Link>
         <Link
           to={`${!isUserLoggedIn ? "/" : "/page3"}`}
           className="NavBarButton"
         >
-          <FontAwesomeIcon icon={faStar} onClick={openPopUpWhenNotLoggedIn} />
+          <FontAwesomeIcon
+            icon={faStar}
+            onClick={() => {
+              openPopUpWhenNotLoggedIn();
+              setOpenRecipeWindow(false);
+            }}
+          />
         </Link>
         {/* <Link to="/page4" className="NavBarButton">
           <FontAwesomeIcon icon={faRobot} />

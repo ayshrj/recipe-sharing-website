@@ -15,10 +15,8 @@ const RecipePage = ({ data, isHomePage }) => {
 
   return (
     <div className="recipe-container">
-      {isHomePage && <h1 className="recipe-name-opened">{recipeName}</h1>}
-
       <div className="ingredients-container">
-        <h2>Ingredients:</h2>
+        <h2 style={{ padding: "0px" }}>Ingredients:</h2>
         <ul>
           {ingredients.map((ingredient, index) => (
             <li key={index}>

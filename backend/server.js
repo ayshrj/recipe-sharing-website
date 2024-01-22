@@ -252,6 +252,50 @@ app.get("/recipes", async (req, res) => {
   }
 });
 
+//Retrieving All Recipes in Complete Recipe Database
+app.get("/recipes/recipeid", async (req, res) => {
+  const { clickedRecipeId } = req.query;
+  console.log(clickedRecipeId);
+  try {
+    const recipeInfo = await RecipeInfoByIdInfo.findOne({
+      recipeNameId: clickedRecipeId,
+    });
+    if (recipeInfo) {
+      console.log("recipefound", recipeInfo);
+      res.json({ success: true, recipeInfo: recipeInfo });
+    } else {
+      res.json({ success: false, message: "Recipe not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
+// Updating user's favourited recipes route
+app.post("/user/likeRecipe", async (req, res) => {
+  const { recipeNameId, recipeName, loggedInUserId } = req.body;
+
+  try {
+    const userInfo = await UserInfo.findOne({ userid: loggedInUserId });
+
+    if (userInfo) {
+      // Adding the new recipe to the myRecipe array
+      userInfo.savedRecipe.push({
+        recipeid: recipeNameId,
+        recipeName: recipeName,
+      });
+      await userInfo.save();
+
+      res.json({ success: true, message: "Recipe added successfully" });
+    } else {
+      res.json({ success: false, message: "User not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

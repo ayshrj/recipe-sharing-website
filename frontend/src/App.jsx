@@ -19,6 +19,8 @@ function App() {
   const [ownedRecipe, setOwnedRecipe] = useState([]);
   const [favourtieRecipe, setFavourtieRecipe] = useState([]);
 
+  const [openRecipeWindow, setOpenRecipeWindow] = useState(false);
+
   return (
     <Router>
       <div className={`app ${isHomePage ? "home" : ""}`}>
@@ -28,6 +30,8 @@ function App() {
           loggedInUserId={loggedInUserId}
           setLoggedInUserId={setLoggedInUserId}
           isHomePage={isHomePage}
+          openRecipeWindow={openRecipeWindow}
+          setOpenRecipeWindow={setOpenRecipeWindow}
         />
         <Routes>
           <Route
@@ -39,6 +43,10 @@ function App() {
                 setIsUserLoggedIn={setIsUserLoggedIn}
                 setOwnedRecipe={setOwnedRecipe}
                 setFavourtieRecipe={setFavourtieRecipe}
+                isHomePage={isHomePage}
+                openRecipeWindow={openRecipeWindow}
+                setOpenRecipeWindow={setOpenRecipeWindow}
+                isUserLoggedIn={isUserLoggedIn}
               />
             }
           />

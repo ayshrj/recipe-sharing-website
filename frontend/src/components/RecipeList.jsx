@@ -8,7 +8,7 @@ import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-const RecipeList = ({ recipes, isHomePage }) => {
+const RecipeList = ({ recipes, isHomePage, title }) => {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
   const handleRecipeClick = (recipe) => {
@@ -24,7 +24,7 @@ const RecipeList = ({ recipes, isHomePage }) => {
   return (
     <div className="recipe-list-container">
       <div className="left-border"></div>
-      <h1 className="recipe-list-title">My Recipes</h1>
+      <h1 className="recipe-list-title">{title}</h1>
       <div className="recipe-list">
         {recipes.map((recipe) => (
           <React.Fragment key={recipe.recipeNameId}>
