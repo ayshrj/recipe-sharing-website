@@ -180,6 +180,7 @@ app.get("/user/recipes", async (req, res) => {
             const recipeInfo = await RecipeInfoByIdInfo.findOne({
               recipeNameId: myRecipe[i].recipeid,
             });
+            console.log(recipeInfo);
 
             recipeCompleteInfo.push(recipeInfo);
           }

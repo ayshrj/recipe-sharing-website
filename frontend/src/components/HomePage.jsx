@@ -26,6 +26,26 @@ const HomePage = ({ setIsHomePage, loggedInUserId }) => {
           alert("Error retrieving user recipes. " + response.data.message);
         }
       } catch (error) {
+        const SampleRecipesConvertedToObject = SampleRecipes.map(
+          (originalRecipe) => {
+            // Convert ingredients to the desired format
+            const convertedIngredients = Object.entries(
+              originalRecipe.ingredients
+            ).map(([name, quantity]) => ({ name, quantity }));
+
+            // Create the converted recipe object
+            const convertedRecipe = {
+              recipeOwnerId: originalRecipe.recipeOwnerId,
+              recipeNameId: originalRecipe.recipeNameId,
+              recipeName: originalRecipe.recipeName,
+              ingredients: convertedIngredients,
+              steps: originalRecipe.steps,
+            };
+
+            return convertedRecipe;
+          }
+        );
+        setAllRecipes(SampleRecipesConvertedToObject);
         console.error("Error retrieving user recipes:", error);
       }
     };
